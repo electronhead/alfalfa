@@ -14,11 +14,14 @@ class SetPin(Action):
     on:bool
 
     def execute(self, tag:str=None, scheduler_info:dict=None):
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setwarnings(False)
-        GPIO.setup(self.pin, GPIO.OUT)
-        GPIO.output(self.pin, GPIO.HIGH if self.on else GPIO.LOW)
-        util.Output.pprint(lev_fil=util.Output.debug(), dictionary={'time':util.Now.s(), 'class':'SetPin', 'pin':self.pin, 'on':self.on, 'sched':scheduler_info})
+        try:
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setwarnings(False)
+            GPIO.setup(self.pin, GPIO.OUT)
+            GPIO.output(self.pin, GPIO.HIGH if self.on else GPIO.LOW)
+            util.Output.pprint(lev_fil=util.Output.debug(), dictionary={'time':util.Now.s(), 'class':'SetPin', 'pin':self.pin, 'on':self.on, 'sched':scheduler_info})
+        except Exception as exception:
+            return exception
 
 class TogglePin(Action):
     """
@@ -27,11 +30,14 @@ class TogglePin(Action):
     pin:int
 
     def execute(self, tag:str=None, scheduler_info:dict=None):
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setwarnings(False)
-        GPIO.setup(self.pin, GPIO.OUT)
-        GPIO.output(self.pin, not GPIO.input(self.pin))
-        util.Output.pprint(lev_fil=util.Output.debug(), dictionary={'time':util.Now.s(), 'class':'TogglePin', 'pin':self.pin, 'sched':scheduler_info})
+        try:
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setwarnings(False)
+            GPIO.setup(self.pin, GPIO.OUT)
+            GPIO.output(self.pin, not GPIO.input(self.pin))
+            util.Output.pprint(lev_fil=util.Output.debug(), dictionary={'time':util.Now.s(), 'class':'TogglePin', 'pin':self.pin, 'sched':scheduler_info})
+        except Exception as exception:
+            return exception
 
 class Cleanup(Action):
     """
@@ -39,4 +45,7 @@ class Cleanup(Action):
     """
 
     def execute(self, tag:str=None, scheduler_info:dict=None):
-        GPIO.cleanup()
+        try:
+            GPIO.cleanup()
+        except Exception as exception:
+            return exception

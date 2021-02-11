@@ -4,6 +4,9 @@ class AlfalfaAction(FileHeartbeat):
     color:str
     
     def execute(self, tag:str=None, scheduler_info:dict=None):
-        info = scheduler_info if scheduler_info else {}
-        info['what?'] = 'Alfalfa rocks!'
-        super().execute(tag=tag, scheduler_info=info)
+        try:
+            info = scheduler_info if scheduler_info else {}
+            info['what?'] = 'Alfalfa rocks!'
+            super().execute(tag=tag, scheduler_info=info)
+        except Exception as exception:
+            return exception
