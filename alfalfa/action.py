@@ -1,3 +1,6 @@
+"""
+A proof of concept regarding imports from whengo library.
+"""
 from whendo.core.actions.file_action import FileHeartbeat
 
 class AlfalfaAction(FileHeartbeat):
