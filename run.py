@@ -8,8 +8,7 @@ import uvicorn
 In this section import the modules that define Actions.
 These should be imported before importing whendo.api.main
 """
-import alfalfa.gpio_action
-import alfalfa.action
+import alfalfa.action_imports
 
 """
 import the main script that creates the FastAPI instance (main.app).
