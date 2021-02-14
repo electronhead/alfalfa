@@ -1,8 +1,10 @@
 """
 These classes perform simple GPIO operations on pins in addition to those actions
-supplied in whengo.
+supplied in whendo.
 """
-
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except:
+    import Mock.GPIO as GPIO
 
 from whendo.core.action import Action
